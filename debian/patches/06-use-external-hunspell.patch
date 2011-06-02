@@ -1,0 +1,63 @@
+Author: Tiago Saboga <tiagosaboga@gmail.com>
+Description: Use debian's libhunspell.
+Index: omegat-2.2.3.3+dfsg/build.xml
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/build.xml	2011-04-22 09:55:11.000000000 +0000
++++ omegat-2.2.3.3+dfsg/build.xml	2011-04-22 13:02:32.000000000 +0000
+@@ -64,10 +64,6 @@
+     
+     <target name="-post-jar">
+         <delete file="${dist.dir}/README.TXT"/>
+-        <!-- copy the native libraries to the distribution directory -->
+-        <copy todir="dist/native">
+-            <fileset dir="native"/>
+-        </copy>
+     </target>
+     
+     <!-- Creates a zip with two localization packs -->
+Index: omegat-2.2.3.3+dfsg/src/org/omegat/core/spellchecker/SpellChecker.java
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/src/org/omegat/core/spellchecker/SpellChecker.java	2011-04-22 09:55:11.000000000 +0000
++++ omegat-2.2.3.3+dfsg/src/org/omegat/core/spellchecker/SpellChecker.java	2011-04-22 13:03:55.000000000 +0000
+@@ -115,7 +115,9 @@
+         // initialize the spell checker - get the data from the preferences
+         String language = Core.getProject().getProjectProperties().getTargetLanguage().getLocaleCode();
+ 
+-        String dictionaryDir = Preferences.getPreference(Preferences.SPELLCHECKER_DICTIONARY_DIRECTORY);
++        String dictionaryDir = Preferences.getPreferenceDefault(
++                      Preferences.SPELLCHECKER_DICTIONARY_DIRECTORY,
++                      OConsts.SPELLCHECKER_SYSTEM_DICTIONARY_DIRECTORY);
+ 
+         if (dictionaryDir != null) {
+             String affixName = dictionaryDir + File.separator + language + OConsts.SC_AFFIX_EXTENSION;
+@@ -149,13 +151,6 @@
+                 } catch (Error err) {
+                     Log.log("Error loading hunspell: " + err.getMessage());
+                 }
+-                if (checker == null) {
+-                    try {
+-                        checker = new SpellCheckerJMySpell(language, dictionaryName, affixName);
+-                    } catch (Exception ex) {
+-                        Log.log("Error loading jmyspell: " + ex.getMessage());
+-                    }
+-                }
+             }
+             if (checker == null) {
+                 checker = new SpellCheckerDummy();
+Index: omegat-2.2.3.3+dfsg/src/org/omegat/util/OConsts.java
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/src/org/omegat/util/OConsts.java	2011-04-22 12:58:59.000000000 +0000
++++ omegat-2.2.3.3+dfsg/src/org/omegat/util/OConsts.java	2011-04-22 13:02:32.000000000 +0000
+@@ -100,7 +100,11 @@
+     public static final String LEARNED_WORD_LIST_FILE_NAME = "learned_words.txt";
+ 
+     /** The name of the spell checking library */
+-    public static final String SPELLCHECKER_LIBRARY_NAME = "hunspell";
++    public static final String SPELLCHECKER_LIBRARY_NAME = "hunspell-1.2";
++
++    /** directory of system dictionaries */
++    public static final String SPELLCHECKER_SYSTEM_DICTIONARY_DIRECTORY =
++           "/usr/share/myspell/dicts";
+ 
+     /** the native library directory */
+     public static final String NATIVE_LIBRARY_DIR = "native";

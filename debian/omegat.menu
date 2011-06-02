@@ -1,0 +1,3 @@
+?package(omegat):needs="X11" section="Applications/Office"\
+  title="OmegaT" command="/usr/bin/omegat"\
+  icon="/usr/share/omegat/images/OmegaT.xpm"

@@ -1,0 +1,20 @@
+OmegaT for Debian
+-----------------
+
+* The source archive available at sourceforge is not source-only, as
+it contains executable files for another platform without sources and
+the jar files for three libraries: htmlparser, MRJAdapter and
+vldocking.
+    ** MRJAdapter is a Mac-only library, so I'm removing it from the
+    source.
+    ** htmlparser and vldocking are available in debian; just remove 
+    it from the original tarball.
+
+* The package does not install in fhs directories, but rather in a
+single dir. All installation is hence done in debian files, and some
+patches have to be applied as to install files in debian canonical
+locations.
+    ** jar files are installed in /usr/share/java
+    ** docs are installed in /usr/share/doc/omegat/html
+
+ -- Tiago Saboga <tiagosaboga@gmail.com>, Thu, 23 Jul 2008 10:13:42 -0300

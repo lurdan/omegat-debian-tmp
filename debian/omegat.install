@@ -1,0 +1,6 @@
+release/readme*.txt usr/share/doc/omegat/
+release/join.html usr/share/doc/omegat/
+docs/*html usr/share/omegat/html-template
+dist/OmegaT.jar usr/share/java
+images/*{gif,png,xpm} usr/share/omegat/images/
+debian/omegat.desktop usr/share/applications

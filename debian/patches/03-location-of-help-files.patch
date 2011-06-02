@@ -1,0 +1,24 @@
+Author: Tiago Saboga <tiagosaboga@gmail.com>
+Description: Change location of help files.
+--- omegat-2.0.5.2+dfsg.orig/src/org/omegat/gui/help/HelpFrame.java
++++ omegat-2.0.5.2+dfsg/src/org/omegat/gui/help/HelpFrame.java
+@@ -173,7 +173,7 @@
+         } else {
+             path = filename;
+         }
+-        File f = new File(StaticUtils.installDir() + File.separator + OConsts.HELP_DIR + File.separator
++        File f = new File(OConsts.HELP_DIR + File.separator
+                 + path);
+         try {
+             if (f.exists()) {
+--- omegat-2.0.5.2+dfsg.orig/src/org/omegat/util/OConsts.java
++++ omegat-2.0.5.2+dfsg/src/org/omegat/util/OConsts.java
+@@ -58,7 +58,7 @@
+     // help
+     public static final String HELP_HOME = "index.html";
+     public static final String HELP_INSTANT_START = "instantStartGuideNoTOC.html";
+-    public static final String HELP_DIR = "docs";
++    public static final String HELP_DIR = "/usr/share/omegat/html-template";
+     public static final String HELP_LANG_INDEX = "languageIndex.html";
+ 
+     // status file consts

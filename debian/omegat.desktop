@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=OmegaT
+Comment=Computer-Assisted Translation tool
+Exec=omegat
+Icon=/usr/share/omegat/images/OmegaT.xpm
+Type=Application
+Categories=Office;Development;Translation;Java;
+X-AppInstall-Package=omegat

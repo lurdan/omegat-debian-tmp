@@ -1,0 +1,23 @@
+Author: Tiago Saboga <tiagosaboga@gmail.com>
+Description: Do not specify paths in Class-path.
+--- omegat-2.2.3.3+dfsg.orig/manifest-template.mf
++++ omegat-2.2.3.3+dfsg/manifest-template.mf
+@@ -3,7 +3,7 @@
+ License: GNU Public License version 2 or later
+ Specification-Version: 1
+ Implementation-Version: @version@
+-Class-Path: lib/lib-mnemonics.jar lib/htmlparser.jar lib/MRJAdapter.jar lib/vldocking_2.1.4.jar lib/jna.jar lib/swing-layout-1.0.jar lib/jmyspell-core-1.0.0-beta-2.jar lib/activation.jar lib/jaxb-api.jar lib/jaxb-impl.jar lib/jsr173_1.0_api.jar lib/swing-worker-1.2.jar
++Class-Path: omegat-lib-mnemonics.jar libhtmlparser.jar vldocking.jar jna.jar swing-layout.jar activation.jar jaxb-api.jar jaxb-impl.jar jsr173_1.0_api.jar commons-codec.jar
+ OmegaT-Plugin: true
+ 
+ Name: org.omegat.filters3.xml.android.AndroidFilter
+--- omegat-2.2.3.3+dfsg.orig/nbproject/project.properties
++++ omegat-2.2.3.3+dfsg/nbproject/project.properties
+@@ -50,7 +50,6 @@
+ jnlp.enabled=false
+ jnlp.offline-allowed=false
+ jnlp.signed=false
+-libs.CopyLibs.classpath=nbproject/org-netbeans-modules-java-j2seproject-copylibstask.jar
+ jar.compress=true
+ javadoc.preview=true
+ 

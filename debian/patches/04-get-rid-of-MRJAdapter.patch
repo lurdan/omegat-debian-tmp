@@ -1,0 +1,49 @@
+Author: Tiago Saboga <tiagosaboga@gmail.com>
+Description: Remove unneeded library (only useful to Mac OS).
+--- omegat-2.0.5.2+dfsg.orig/src/org/omegat/gui/main/MainWindowMenu.java
++++ omegat-2.0.5.2+dfsg/src/org/omegat/gui/main/MainWindowMenu.java
+@@ -44,8 +44,6 @@
+ import javax.swing.JRadioButtonMenuItem;
+ import javax.swing.JSeparator;
+ 
+-import net.roydesign.mac.MRJAdapter;
+-
+ import org.omegat.core.Core;
+ import org.omegat.core.CoreEvents;
+ import org.omegat.core.events.IApplicationEventListener;
+@@ -249,8 +249,6 @@
+         setActionCommands();
+         MainWindowMenuShortcuts.setShortcuts(mainMenu);
+ 
+-        initMacSpecific();
+-
+         CoreEvents.registerApplicationEventListener(new IApplicationEventListener() {
+             public void onApplicationStartup() {
+                 updateCheckboxesOnStart();
+@@ -304,26 +304,6 @@
+                         .getSettings().getDisplayModificationInfo()));
+     }
+ 
+-    /**
+-     * Initialize Mac-specific features.
+-     */
+-    private void initMacSpecific() {
+-        try {
+-            // MacOSX-specific
+-            MRJAdapter.addQuitApplicationListener(new ActionListener() {
+-                public void actionPerformed(ActionEvent e) {
+-                    mainWindowMenuHandler.projectExitMenuItemActionPerformed();
+-                }
+-            });
+-            MRJAdapter.addAboutListener(new ActionListener() {
+-                public void actionPerformed(ActionEvent e) {
+-                    mainWindowMenuHandler.helpAboutMenuItemActionPerformed();
+-                }
+-            });
+-        } catch (NoClassDefFoundError e) {
+-            Log.log(e);
+-        }
+-    }
+ 
+     /**
+      * Create menu instance and set title.

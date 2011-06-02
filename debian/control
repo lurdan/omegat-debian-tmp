@@ -1,0 +1,36 @@
+Source: omegat
+Section: editors
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Tiago Saboga <tiagosaboga@gmail.com>
+Build-Depends: debhelper (>= 7), openjdk-6-jdk, ant, ant-optional
+Build-Depends-Indep: docbook-to-man, imagemagick, libvldocking-java,
+ libhtmlparser-java, libjna-java, libswing-layout-java, tofrodos, libcommons-codec-java
+Homepage: http://www.omegat.org/omegat/omegat.html
+Vcs-Svn: svn://svn.debian.org/svn/pkg-java/trunk/omegat
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-java/trunk/omegat
+Standards-Version: 3.9.1
+
+Package: omegat
+Architecture: all
+Depends: openjdk-6-jre | sun-java6-jre,
+ libvldocking-java, libhtmlparser-java, libswing-layout-java,
+ ${misc:Depends}
+Recommends: libjna-java, libhunspell-1.2-0
+Description: Computer Assisted Translation (CAT) tool
+ OmegaT's main features are
+  - ability to run on any operating system supporting Java
+  - use of any valid TMX file as translation reference
+  - flexible sentence segmenting (using an SRX-like method)
+  - searches in the project and the reference translation memories
+  - searches in any directory including OmegaT-readable files
+  - fuzzy matching
+  - smart handling of projects including complex directory hierarchies
+  - support for glossaries (terminology checks)
+  - easy to understand documentation and tutorial
+  - localization in a number of languages.
+ .
+ OmegaT supports OpenDocument files, Microsoft Office files (using
+ OpenOffice.org as a conversion filter, or by conversion to HTML),
+ OpenOffice.org or StarOffice files, as well as (X)HTML, Java
+ localization files, PO files, OpenXML , DocBook or plain text files.

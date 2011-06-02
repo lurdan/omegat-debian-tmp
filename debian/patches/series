@@ -1,0 +1,8 @@
+01-extra-jars-in-new-location.patch
+03-location-of-help-files.patch
+04-get-rid-of-MRJAdapter.patch
+05-remove-jmyspell-alternative.patch
+06-use-external-hunspell.patch
+07-rename-SwingWorker.patch
+08-replace-BASE64Encoder.patch
+09-fix-deprecated-global.patch

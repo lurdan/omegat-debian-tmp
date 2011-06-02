@@ -1,0 +1,79 @@
+Index: omegat-2.2.3.3+dfsg/src/org/omegat/gui/dialogs/ProxyLoginDialog.java
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/src/org/omegat/gui/dialogs/ProxyLoginDialog.java	2011-04-22 15:49:32.000000000 +0000
++++ omegat-2.2.3.3+dfsg/src/org/omegat/gui/dialogs/ProxyLoginDialog.java	2011-04-22 15:51:16.000000000 +0000
+@@ -40,6 +40,7 @@
+ 
+ import org.omegat.util.OStrings;
+ import org.omegat.util.Preferences;
++import org.apache.commons.codec.binary.Base64;
+ 
+ /**
+  * 
+@@ -74,14 +75,9 @@
+         String encodedUser = (Preferences.getPreference(Preferences.PROXY_USER_NAME));
+         String encodedPassword = (Preferences.getPreference(Preferences.PROXY_PASSWORD));
+ 
+-        sun.misc.BASE64Decoder dec = new sun.misc.BASE64Decoder();
+-        try {
+-            userText.setText(new String(dec.decodeBuffer(encodedUser)));
+-            passwordField.setText(new String(dec.decodeBuffer(encodedPassword)));
+-        } catch (IOException ex) {
+-            Log.logErrorRB("LOG_DECODING_ERROR");
+-            Log.log(ex);
+-        }
++        Base64 dec = new Base64();
++        userText.setText(new String(dec.decodeBase64(encodedUser)));
++        passwordField.setText(new String(dec.decodeBase64(encodedPassword)));
+ 
+         invalidate();
+         pack();
+@@ -207,9 +203,9 @@
+ 
+     private void okButtonActionPerformed(java.awt.event.ActionEvent evt)// GEN-FIRST:event_okButtonActionPerformed
+     {
+-        sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
+-        String encodeduser = enc.encode(userText.getText().getBytes());
+-        String encodedPassword = enc.encode(new String(passwordField.getPassword()).getBytes());
++        Base64 enc = new Base64();
++        String encodeduser = new String(enc.encodeBase64(userText.getText().getBytes()));
++        String encodedPassword = new String(enc.encodeBase64(new String(passwordField.getPassword()).getBytes()));
+ 
+         Preferences.setPreference(Preferences.PROXY_USER_NAME, encodeduser);
+         Preferences.setPreference(Preferences.PROXY_PASSWORD, encodedPassword);
+Index: omegat-2.2.3.3+dfsg/src/org/omegat/util/WikiGet.java
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/src/org/omegat/util/WikiGet.java	2011-04-22 15:49:32.000000000 +0000
++++ omegat-2.2.3.3+dfsg/src/org/omegat/util/WikiGet.java	2011-04-22 15:53:35.000000000 +0000
+@@ -37,6 +37,7 @@
+ import java.net.URL;
+ import java.net.URLEncoder;
+ import java.util.Map;
++import org.apache.commons.codec.binary.Base64;
+ 
+ /**
+  * Import pages from MediaWiki
+@@ -218,17 +219,12 @@
+             String encodedUser = (Preferences.getPreference(Preferences.PROXY_USER_NAME));
+             if (!StringUtil.isEmpty(encodedUser)) { // There is a proxy user
+                 String encodedPassword = (Preferences.getPreference(Preferences.PROXY_PASSWORD));
+-                sun.misc.BASE64Decoder dec = new sun.misc.BASE64Decoder();
+-                try {
+-                    String pass = (new String(dec.decodeBuffer(encodedUser)));
+-                    pass += ":" + new String(dec.decodeBuffer(encodedPassword));
+-                    sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
+-                    encodedPassword = enc.encode(pass.getBytes());
+-                    conn.setRequestProperty("Proxy-Authorization", "Basic " + encodedPassword);
+-                } catch (IOException ex) {
+-                    Log.logErrorRB("LOG_DECODING_ERROR");
+-                    Log.log(ex);
+-                }
++                Base64 dec = new Base64();
++                String pass = (new String(dec.decodeBase64(encodedUser)));
++                pass += ":" + new String(dec.decodeBase64(encodedPassword));
++                Base64 enc = new Base64();
++                encodedPassword = new String(enc.encodeBase64(pass.getBytes()));
++                conn.setRequestProperty("Proxy-Authorization", "Basic " + encodedPassword);
+              }
+ 
+             conn.setDoInput(true);

@@ -1,0 +1,26 @@
+Index: omegat-2.2.3.3+dfsg/src/org/omegat/gui/main/MainWindowMenuHandler.java
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/src/org/omegat/gui/main/MainWindowMenuHandler.java	2011-04-19 13:41:31.000000000 +0000
++++ omegat-2.2.3.3+dfsg/src/org/omegat/gui/main/MainWindowMenuHandler.java	2011-04-19 17:08:07.000000000 +0000
+@@ -32,7 +32,7 @@
+ import javax.swing.JDialog;
+ import javax.swing.JOptionPane;
+ 
+-import org.jdesktop.swingworker.SwingWorker;
++import javax.swing.SwingWorker;
+ import org.omegat.core.Core;
+ import org.omegat.core.CoreEvents;
+ import org.omegat.core.data.SourceTextEntry;
+Index: omegat-2.2.3.3+dfsg/src/org/omegat/gui/main/ProjectUICommands.java
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/src/org/omegat/gui/main/ProjectUICommands.java	2011-04-19 17:18:46.000000000 +0000
++++ omegat-2.2.3.3+dfsg/src/org/omegat/gui/main/ProjectUICommands.java	2011-04-19 17:19:09.000000000 +0000
+@@ -29,7 +29,7 @@
+ import javax.swing.JOptionPane;
+ import javax.swing.SwingUtilities;
+ 
+-import org.jdesktop.swingworker.SwingWorker;
++import javax.swing.SwingWorker;
+ import org.omegat.core.Core;
+ import org.omegat.core.data.ProjectFactory;
+ import org.omegat.core.data.ProjectProperties;

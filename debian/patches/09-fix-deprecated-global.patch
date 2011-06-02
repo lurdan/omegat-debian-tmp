@@ -1,0 +1,13 @@
+Index: omegat-2.2.3.3+dfsg/src/org/omegat/util/Log.java
+===================================================================
+--- omegat-2.2.3.3+dfsg.orig/src/org/omegat/util/Log.java	2011-04-22 14:41:16.000000000 +0000
++++ omegat-2.2.3.3+dfsg/src/org/omegat/util/Log.java	2011-04-22 15:43:09.000000000 +0000
+@@ -50,7 +50,7 @@
+     private static Logger LOGGER;
+ 
+     static {
+-        LOGGER = Logger.global;
++        LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+ 
+         boolean loaded = false;
+         File usersLogSettings = new File(StaticUtils.getConfigDir(), "logger.properties");

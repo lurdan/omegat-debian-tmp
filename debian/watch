@@ -1,0 +1,6 @@
+version=3
+#http://sf.net/omegat/OmegaT_(.*)_Source\.zip
+opts=dversionmangle=s/\+dfsg\d*$//,uversionmangle=s/_(\d)+/.$1/ \
+  http://sf.net/omegat/OmegaT_([\d._]+)_Source\.zip \
+  debian \
+  debian/repack-source.sh
